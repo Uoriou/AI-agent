@@ -1,0 +1,37 @@
+import anthropic
+import os
+from dotenv import load_dotenv
+
+"""
+Project idea 
+Translate letters written in German into English
+"""
+
+#Instantiate this in api.py 
+class AssistedIntelligent:
+
+    content = ""  # Store what i ask in here
+
+    def __init__(self,content:str):
+        self.content = content
+
+    def ask(self):
+
+        load_dotenv()
+        MY_ENV_VAR = os.getenv("API_key")
+        client = anthropic.Anthropic(
+            api_key=MY_ENV_VAR
+        )
+
+        response = client.messages.create(
+            model="claude-haiku-4-5", 
+            max_tokens=200,
+            messages=[
+                {"role": "user", "content":self.content}
+            ]
+        )
+        print(response.content[0].text)  
+        return response.content[0].text 
+
+
+
