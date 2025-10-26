@@ -61,7 +61,7 @@ export default function Home() {
                 <div
                     onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}
-                    style={{ border: hovered ? "1px solid orange" : "none" }}>
+                    style={{ border: hovered ? "1px solid white" : "none" }}>
                     <button><ChatWidget/></button>
                 </div>
                 

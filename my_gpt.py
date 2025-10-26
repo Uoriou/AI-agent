@@ -10,7 +10,7 @@ Translate letters written in German into English
 #Instantiate this in api.py 
 class AssistedIntelligent:
 
-    content = ""  # Store what i ask in here
+    content = "" 
 
     def __init__(self,content:str):
         self.content = content
@@ -18,20 +18,24 @@ class AssistedIntelligent:
     def ask(self):
 
         load_dotenv()
-        MY_ENV_VAR = os.getenv("API_key")
+        MY_ENV_VAR = os.getenv("API_KEY")
         client = anthropic.Anthropic(
             api_key=MY_ENV_VAR
         )
 
         response = client.messages.create(
             model="claude-haiku-4-5", 
-            max_tokens=200,
+            max_tokens=200, #Adjust this however i want
             messages=[
                 {"role": "user", "content":self.content}
             ]
         )
-        print(response.content[0].text)  
+        #print(response.content[0].text)  
         return response.content[0].text 
+
+"""Debugging purpose -- >   
+ai = AssistedIntelligent("Is coding good for the brain")
+print(ai.ask())"""
 
 
 

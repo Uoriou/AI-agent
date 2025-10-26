@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 @app.get("/")
-def get():#Testing
+def get():#Backend testing
     return {"Hello": "World"}
 
 @app.post("/translate/")
