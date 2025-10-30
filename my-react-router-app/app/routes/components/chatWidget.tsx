@@ -1,11 +1,14 @@
 import { useState} from "react";
-import { BsFillChatFill } from "react-icons/bs";
+import { FaExchangeAlt } from "react-icons/fa";
 
-function ChatWidget() {
+// Make a prop to receive the data 
+export default function ChatWidget(text:any) {
+
+    //console.log(text); 
+    const [hovered, setHovered] = useState(false);
 
     return (
-        <div>
-            {/* Inner Container */}
+        <>
             <div
                 style={{
                     display: "flex",
@@ -15,22 +18,27 @@ function ChatWidget() {
                     padding: "12px 24px",
                     borderRadius: "50px",
                     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                    gap: "10px"
+                    gap: "10px",
+                    border: hovered ? "1px solid white" : "none" 
                 }}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
             >
-                <BsFillChatFill size={20} color="white" />
-                {/* Button Text */}
+                    
+                <FaExchangeAlt size={20} color="white"/> 
                 <span style={{
                     color: "white",
                     fontWeight: "600",
                     fontSize: "16px",
                     letterSpacing: "0.5px"
                 }}>
-                    Ask anything
+                    
+                    Translate
                 </span>
-            </div>
-        </div>
+                    
+            </div> 
+        </> 
     );
 }
 
-export default ChatWidget;
+
