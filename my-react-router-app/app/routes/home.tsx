@@ -7,30 +7,19 @@ export default function Home() {
 
     const [file,setFile] = useState<File | undefined>();
     const [text, setText] = useState("");
-  
 
-    //Get the file / image from the input when on change event is triggered
-    function handleOnChangeFile(e:React.FormEvent<HTMLInputElement>){
-       
-        const target = e.target as HTMLInputElement & {
-            files: FileList;
-        }
-        if(target.files){
-            console.log('File', target.files);
-            setFile(target.files[0]);
-        }
-    }  
-    
     return(
         <>
-            
             <div style={{display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
                 alignItems: 'center',
                 height: '100vh',}}
             >
-                <div>Welcome to my first AI agent project</div>
+                <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                    Welcome to my AI Translate Agent
+                </div>
+
                 <ChatInput placeholder = "Start typing here "/>
                     {text}
                 <div>
@@ -45,21 +34,7 @@ export default function Home() {
                     >  
                     </button>
                 </div>
-                
-                <div className="form-group">
-                        
-                    <label htmlFor="image">File</label>
-                    <div className='col-image'>
-                        <input type="file" id="image" onChange={handleOnChangeFile}/>
-                    </div> 
-                </div>
-
-            </div>
-
-            
-             
-            
-        
+            </div>    
         </>
     )
 }

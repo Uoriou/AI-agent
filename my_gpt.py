@@ -25,7 +25,7 @@ class AssistedIntelligent:
 
         response = client.messages.create(
             model="claude-haiku-4-5", 
-            #max_tokens=, #Adjust this however i want
+            max_tokens=2000, #Adjust this however i want
             messages=[
                 {"role": "user", "content":self.content}
             ]
