@@ -1,12 +1,10 @@
 import React, { useEffect, useState,useRef } from 'react';
-import axios from 'axios';
 import ChatInput from './components/ChatInput';
-import ChatWidget from './components/chatWidget'
-
+import Response from './response';
 export default function Home() {
 
-    const [file,setFile] = useState<File | undefined>();
-    const [text, setText] = useState("");
+    const [prompted,setPrompted] = useState(false);
+    const [answer, setAnswer] = useState("");
 
     return(
         <>
@@ -19,20 +17,11 @@ export default function Home() {
                 <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
                     Welcome to my AI Translate Agent
                 </div>
-
-                <ChatInput placeholder = "Start typing here "/>
-                    {text}
-                <div>
-                    <button 
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: "8px",
-                            padding: "10px 20px",
-                        }}
-                    >  
-                    </button>
+                {/*This also allows a child to pass data to a parent, if you add onSend(func)*/}
+                <ChatInput placeholder = "Start typing here" prompted={setPrompted}/>
+                {prompted && <Response onReceive={setAnswer}/>}
+                <div className="whitespace-pre-wrap">
+                    {answer[0]}
                 </div>
             </div>    
         </>

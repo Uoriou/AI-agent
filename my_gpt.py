@@ -16,7 +16,6 @@ class AssistedIntelligent:
         self.content = content
 
     def ask(self):
-
         load_dotenv()
         MY_ENV_VAR = os.getenv("API_KEY")
         client = anthropic.Anthropic(

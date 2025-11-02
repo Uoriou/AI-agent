@@ -22,10 +22,8 @@ app.add_middleware(
 
 temp = []
 
-@app.get("/")
-def get():#Backend testing
-    #When line braker \ is in the text move below ... 
-    
+@app.get("/answer")
+def get():
     return {"message": temp}
 
 @app.post("/translate/sentence")

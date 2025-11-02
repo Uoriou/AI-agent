@@ -8,24 +8,27 @@ import sendBackend from "../SendBackend";
 type ChatInputProps = {
     onSend?: (text: string) => void; //The input props type must be a function that takes a str and returns void or str
     placeholder?: string;
+    prompted?: (isPrompted:boolean) => void
 };
 
 export default function ChatInput({
     onSend = (text) => undefined,
     placeholder = "",
-}: ChatInputProps) {
-  const [text, setText] = useState("");
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+    prompted = (isPrompted) => undefined,
+}:  ChatInputProps) {
+    const [text, setText] = useState("");
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSend = () => {
-    const trimmedText = text.trim();
-    if (!trimmedText) return;
-    onSend(trimmedText);
-    // Here probably handle Django request 
-    sendBackend(trimmedText)
-    console.log(trimmedText)
-    //setText(trimmedText);
-  };
+    const handleSend = () => {
+        const trimmedText = text.trim();
+        if (!trimmedText) return;
+        onSend(trimmedText);
+        //Handle a django request here
+        sendBackend(trimmedText)
+        console.log(trimmedText) // debugging
+        prompted(true);
+        
+    };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
