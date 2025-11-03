@@ -4,8 +4,8 @@ import Response from './response';
 export default function Home() {
 
     const [prompted,setPrompted] = useState(false);
-    const [answer, setAnswer] = useState("");
-
+    const [answer, setAnswer] = useState<string[]>([]);
+    
     return(
         <>
             <div style={{display: 'flex',
@@ -18,11 +18,22 @@ export default function Home() {
                     Welcome to my AI Translate Agent
                 </div>
                 {/*This also allows a child to pass data to a parent, if you add onSend(func)*/}
-                <ChatInput placeholder = "Start typing here" prompted={setPrompted}/>
-                {prompted && <Response onReceive={setAnswer}/>}
-                <div className="whitespace-pre-wrap">
-                    {answer[0]}
-                </div>
+                <ChatInput placeholder = "Start typing here" onPromptChange={setPrompted} />
+                
+                {prompted && (
+                    <>
+                        <Response onReceive={setAnswer} />
+                        <div>
+                            {answer?.map((line: any, i: any) => (
+                                <React.Fragment key={i}>
+                                {line.sentence}
+                                <br />
+                                </React.Fragment>
+                            ))}
+                        </div>
+                       
+                    </>
+                )}
             </div>    
         </>
     )

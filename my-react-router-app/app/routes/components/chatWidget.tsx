@@ -10,6 +10,7 @@ export default function ChatWidget(text:any) {
     return (
         <>
             <div
+                
                 style={{
                     display: "flex",
                     alignItems: "center",

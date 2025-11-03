@@ -8,17 +8,17 @@ import sendBackend from "../SendBackend";
 type ChatInputProps = {
     onSend?: (text: string) => void; //The input props type must be a function that takes a str and returns void or str
     placeholder?: string;
-    prompted?: (isPrompted:boolean) => void
+    onPromptChange?: (isPrompted:boolean) => void;
 };
 
 export default function ChatInput({
     onSend = (text) => undefined,
     placeholder = "",
-    prompted = (isPrompted) => undefined,
+    onPromptChange = (isPrompted) => undefined,
 }:  ChatInputProps) {
     const [text, setText] = useState("");
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+    
     const handleSend = () => {
         const trimmedText = text.trim();
         if (!trimmedText) return;
@@ -26,8 +26,7 @@ export default function ChatInput({
         //Handle a django request here
         sendBackend(trimmedText)
         console.log(trimmedText) // debugging
-        prompted(true);
-        
+        onPromptChange(true);
     };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -60,6 +59,7 @@ export default function ChatInput({
             "
           />
           <button
+            
             onClick={handleSend}
             disabled={!text.trim()}
           >

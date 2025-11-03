@@ -1,28 +1,31 @@
-import React, {useState,useRef } from 'react';
+import React, {useState,useEffect } from 'react';
 import axios from 'axios';
 
-
 type responseProps = {
-    onReceive?:  (response:string)=>void 
+    onReceive?:  (response:string[])=>void 
 }
-export default async function response({
+export default  function response({
     onReceive = ()=> undefined,
 }:responseProps){
+    //const[text,setText] = useState("");
 
-    await axios.post('http://127.0.0.1:8000/answer', {
-        headers: {
-            "Content-Type":"application/json",
-        },
-    }).then( res => {
-        console.log("Success",res);
-        onReceive(res.data)
-    }).catch(res =>{
-        console.log("Failed to deliver the answer", res)
-    })
+    useEffect(()=>{
+        axios.get('http://127.0.0.1:8000/answer', {
+            headers: {
+                "Content-Type":"application/json",
+            },
+        }).then( res => {
+            console.log("Success",res.data.message);
+            onReceive(res.data.message)
+        }).catch(res =>{
+            console.log("Failed to deliver the answer", res)
+        })
+    },[])
+    
 
     return (
-        <>
-            <p>Here is the response</p>  
+        <>  {/*Make it cool */}
+            <p>Here is the response</p>
         </>
     )
 }
