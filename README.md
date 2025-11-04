@@ -1,6 +1,7 @@
 # AI agent
 
-Stil work in progress...
+> [!NOTE]
+> Stil work in progress...
 
 ## Project Overview
 
