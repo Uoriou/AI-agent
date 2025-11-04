@@ -29,14 +29,14 @@ def get():
 @app.post("/translate/sentence")
 async def post(text:dict):
     
-    """#Need to receive the data from the frontend
+    #Need to receive the data from the frontend
     text_to_translate = text["sentence"]
     ai = my_gpt.AssistedIntelligent(text_to_translate)
     #print() 
     response = parser.unmark(ai.ask())
     print("Here is the response",response)
-    temp.append(response)"""
-    temp.append(text)
+    temp.append(response)
+    
   
 
 if __name__ == "__main__":

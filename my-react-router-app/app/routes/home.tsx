@@ -19,15 +19,14 @@ export default function Home() {
                 </div>
                 {/*This also allows a child to pass data to a parent, if you add onSend(func)*/}
                 <ChatInput placeholder = "Start typing here" onPromptChange={setPrompted} />
-                
                 {prompted && (
                     <>
                         <Response onReceive={setAnswer} />
                         <div>
                             {answer?.map((line: any, i: any) => (
                                 <React.Fragment key={i}>
-                                {line.sentence}
-                                <br />
+                                {line}
+                                <br/>
                                 </React.Fragment>
                             ))}
                         </div>
