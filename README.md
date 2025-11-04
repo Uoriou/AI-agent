@@ -1,4 +1,4 @@
-# AI agent
+# 🤖 AI agent
 
 > [!NOTE]
 > Stil work in progress...
