@@ -5,7 +5,7 @@
 
 ## Project Overview
 
-This project is a simple ai agent to help me translate German into English
+This project is a simple ai agent to help me translate any foreign language into English
 
 ## Technical Requirements:
 
@@ -17,9 +17,10 @@ To run the project, please ensure that your system meets the following requireme
 
 - Python fastApi (Backend with Claude AI api)
 - React Typescript (Frontend)
+- Tailwind CSS (Frontend styling)
 - Docker
 
-  [![My Skills](https://skillicons.dev/icons?i=py,react,ts,docker&perline=3)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind,docker&perline=3)](https://skillicons.dev)
 
 Access the application at: 
 ``` bash
