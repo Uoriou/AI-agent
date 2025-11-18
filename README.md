@@ -3,17 +3,17 @@
 > [!NOTE]
 > Stil work in progress...
 
-## Project Overview
+## :blue_book: Project Overview
 
 This project is a simple ai agent to help me translate any foreign language into English
 
-## Technical Requirements:
+## :computer: Technical Requirements:
 
 To run the project, please ensure that your system meets the following requirements:
 
 - Operating System: Windows, macOS, or Linux
 
-## Libraries / Technologies Used:
+## ⚙️ Libraries / Technologies Used:
 
 - Python fastApi (Backend with Claude AI api)
 - React Typescript (Frontend)
