@@ -26,12 +26,12 @@ Access the application at:
 ``` bash
     localhost:5173/
 ```
-## Features 
+## :fire: Features 
 
 - Transaltion
 - The explanation of sentences in a foreign language
 
-## TODO 
+## :memo: TODO 
 
  - A simple MCP server
 
