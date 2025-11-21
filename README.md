@@ -31,3 +31,7 @@ Access the application at:
 - Transaltion
 - The explanation of sentences in a foreign language
 
+## TODO 
+
+ - A simple MCP server
+
