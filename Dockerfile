@@ -1,0 +1,24 @@
+# Stage 1: Build React frontend
+FROM node:20 AS frontend-build
+WORKDIR /app
+COPY my-react-router-app/package*.json ./
+RUN npm install
+COPY my-react-router-app/ ./
+RUN npm run build
+
+# Stage 2: Build backend
+FROM python:3.11-slim
+WORKDIR /app
+COPY backend/requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+COPY backend/ ./
+
+# Copy frontend build into backend static folder
+COPY --from=frontend-build /app/build ./frontend_build
+
+# Expose port
+EXPOSE 8000
+
+# Start FastAPI with Gunicorn
+CMD ["gunicorn", "api:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:10000"]
+
