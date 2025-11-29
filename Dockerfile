@@ -16,9 +16,8 @@ COPY backend/ ./
 # Copy frontend build into backend static folder
 COPY --from=frontend-build /app/build ./frontend_build
 
-# Expose port
+
 EXPOSE 8000
 
-# Start FastAPI with Gunicorn
 CMD ["gunicorn", "api:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:10000"]
 
