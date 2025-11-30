@@ -2,7 +2,10 @@ services:
   - type: web
     name: fullstack-app
     env: docker
-    dockerfilePath: Dockerfile
+    image:
+      url: ghcr.io/uoriou/app-image:latest
+      creds:
+        fromRegistry: github-cr
     plan: free
     autoDeploy: true
 
