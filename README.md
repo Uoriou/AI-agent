@@ -27,11 +27,11 @@ This project is a simple ai agent to help me translate any foreign language into
   
   - Operating System: Windows, macOS, or Linux
   - Internet Connection
-    
-  Access the application at: 
+
+  This app is deployed on Cloud: 
   ``` bash
-      localhost:5173/
-```
+      url:
+  ```
 ## Features 
 
 - Transaltion
