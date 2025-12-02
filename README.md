@@ -9,19 +9,19 @@ This project is a simple ai agent to help me translate any foreign language into
 
 ## Libraries / Technologies Used:
 
-* React Typescript
-* Tailwind
-## Frontend 
+  ### Frontend 
+    * React Typescript
+    *  Tailwind
 
-## Backend
- * Python fastApi (Backend with Claude AI api)
- * Docker
+  ### Backend
+    * Python fastApi (Backend with Claude AI api)
+    * Docker
 
   [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind,docker&perline=3)](https://skillicons.dev)
 
 ## Getting Started 
 
-## Technical Requirements:
+## Technical Requirements
 
 To run the project, please ensure that your system meets the following requirements:
 
