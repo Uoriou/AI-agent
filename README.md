@@ -21,16 +21,16 @@ This project is a simple ai agent to help me translate any foreign language into
 
 ## Getting Started 
 
-## Technical Requirements
+### Technical Requirements
 
-To run the project, please ensure that your system meets the following requirements:
-
-- Operating System: Windows, macOS, or Linux
-- Internet Connection
+  To run the project, please ensure that your system meets the following requirements:
   
-Access the application at: 
-``` bash
-    localhost:5173/
+  - Operating System: Windows, macOS, or Linux
+  - Internet Connection
+    
+  Access the application at: 
+  ``` bash
+      localhost:5173/
 ```
 ## Features 
 
