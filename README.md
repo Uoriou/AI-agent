@@ -5,7 +5,8 @@
 
 ## Project Overview
 
-This project is a simple ai agent to help me translate any foreign language into English
+This project is to help a frind of mine who has a part-time language tranlsation job.
+It extracts the language segment from an Excel workbook he is responsible for translating and outputs the correct Japanese translation into the workbook. 
 
 ## Libraries / Technologies Used:
 
@@ -14,10 +15,11 @@ This project is a simple ai agent to help me translate any foreign language into
   * Tailwind
 
   ### Backend
-  * Python fastApi (Backend with Claude AI api)
-  * Docker
+  * Python fastApi (API routes)
+  * Python numpy / pandas
+  * Claude API 
 
-  [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind,docker&perline=3)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind&perline=3)](https://skillicons.dev)
 
 ## Getting Started 
 
