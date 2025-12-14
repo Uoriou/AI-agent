@@ -5,7 +5,7 @@
 
 ## Project Overview
 
-This project is to help a frind of mine who has a part-time language tranlsation job.
+This project is to help a friend of mine who has a part-time language tranlsation job.
 It extracts the language segment from an Excel workbook he is responsible for translating and outputs the correct Japanese translation into the workbook. 
 
 ## Libraries / Technologies Used:
