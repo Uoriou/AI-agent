@@ -19,16 +19,20 @@ export default function ExcelAutomation(){
     }
 
     async function handleSubmit(){
-        //json or form ? 
+        //json or form ? i think its form 
         if(!file) return;
+        const formData = new FormData();
+        formData.append("file",file)
         console.log("Sending to the backend")
-        const data = {
+        /*const data = {
             sentence:file
         }
-        const json = JSON.stringify(data)
-        await axios.post('https://ai-agent-gywv.onrender.com/automate', json, {
+        const json = JSON.stringify(data)*/
+        //Move the link to an environmental variable
+        // ! Run into a problem when sending a file 
+        await axios.post('https://ai-agent-gywv.onrender.com/automate', formData, {
             headers: {
-                "Content-Type":"application/json",
+                "Content-Type":"multi-part/form-data",
             },
         }).then( res => {
             console.log("Success",res);

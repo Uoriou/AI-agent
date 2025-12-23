@@ -8,7 +8,7 @@ export default async function sendBackend(text:string){
         sentence:text
     }
     const json = JSON.stringify(data)
-    await axios.post('http://127.0.0.1:8000/translate/sentence', json, {
+    await axios.post('https://ai-agent-gywv.onrender.com/translate/sentence', json, {
         headers: {
             "Content-Type":"application/json",
         },
