@@ -26,7 +26,7 @@ export default function ExcelAutomation(){
             sentence:file
         }
         const json = JSON.stringify(data)
-        await axios.post('http://127.0.0.1:8000/automate', json, {
+        await axios.post('https://ai-agent-gywv.onrender.com/automate', json, {
             headers: {
                 "Content-Type":"application/json",
             },
@@ -57,7 +57,7 @@ export default function ExcelAutomation(){
                         (.xlsx, .xls, .csv)
                     </span>
                 </p>
-
+                    <p>{file && <div>{file.name}</div>}</p>
                     <div className="mt-4 flex items-center gap-3">
                         
                         <input
@@ -67,7 +67,7 @@ export default function ExcelAutomation(){
                             onChange={handleOnChangeFile}
                             className="hidden"
                         />
-
+                       
                         <label
                             htmlFor="excel"
                             className="inline-flex items-center gap-2
@@ -97,7 +97,7 @@ export default function ExcelAutomation(){
                         >
                             Upload
                         </button>
-                    </div>
+                </div>
                     
             </div>
 
