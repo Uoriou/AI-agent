@@ -37,7 +37,12 @@ async def post(text:dict):
     print("Here is the response",response)
     temp.append(response)
     
-  
+"""Excel file"""  
+@app.post("/automate")
+async def post(json:dict):
+
+    print(json)
+    return None
 
 #if __name__ == "__main__":
     #uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)

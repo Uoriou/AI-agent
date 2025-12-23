@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useRef } from 'react';
 import ChatInput from './components/ChatInput';
 import Response from './response';
+import ExcelAutomation from './ExcelAutomation';
 export default function Home() {
 
     const [prompted,setPrompted] = useState(false);
@@ -8,6 +9,7 @@ export default function Home() {
     
     return(
         <>
+            
             <div style={{display: 'flex',
                 justifyContent: 'center',
                 flexDirection: 'column',
@@ -30,10 +32,10 @@ export default function Home() {
                                 </React.Fragment>
                             ))}
                         </div>
-                       
                     </>
                 )}
-            </div>    
+            </div>   
         </>
+
     )
 }
