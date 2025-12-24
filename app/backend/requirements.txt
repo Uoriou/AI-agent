@@ -4,5 +4,8 @@ python-dotenv
 pydantic
 anthropic
 Markdown
-
+pandas
+numpy
+python-multipart
+openpyxl
 
