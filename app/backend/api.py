@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import my_gpt
 import parser
+import excel
 
 app = FastAPI()
 
@@ -42,9 +43,10 @@ async def post(text:dict):
     
 """Excel file"""  
 @app.post("/automate")
-async def post(file: Annotated[bytes, File()]):
-
-    print(len(file))
+async def post(file: Annotated[UploadFile, File()]):
+    contents = await file.read()   
+    print(len(contents))
+    #excel_automation = excel.Excel(file)
     return None
 
 #if __name__ == "__main__":

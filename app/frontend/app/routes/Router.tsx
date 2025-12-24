@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { Welcome } from "~/welcome/welcome";
 import ExcelAutomation from "./ExcelAutomation";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
@@ -10,7 +11,7 @@ module.exports = (
      <React.StrictMode>
         <HashRouter>
         <Routes>
-            <Route path="/excel" element={<ExcelAutomation />} />
+            <Route path="/welcome" element={<Welcome/>} />
         </Routes>
         </HashRouter>
     </React.StrictMode>
