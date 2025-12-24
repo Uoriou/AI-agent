@@ -15,8 +15,9 @@ It extracts the language segment from an Excel workbook he is responsible for tr
   * Tailwind
 
   ### Backend
-  * Python fastApi (API routes)
-  * Python numpy / pandas
+  * Python fastApi 
+  * Python openpyxl
+  * Python pandas
   * Claude API 
 
   [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind&perline=3)](https://skillicons.dev)
@@ -27,19 +28,17 @@ It extracts the language segment from an Excel workbook he is responsible for tr
 
   To run the project, please ensure that your system meets the following requirements:
   
-  - Operating System: Windows, macOS, or Linux
-  - Internet Connection
+   * Operating System: Windows, macOS, or Linux
+   * Broadband Connection
 
-  This app is deployed on Cloud: 
-  ``` bash
-      url:
-  ```
+  This app is deployed on Cloud using: 
+   * Render for the backend 
+   * Vercel for the frontend
+
 ## Features 
 
-- Transaltion
-- The explanation of sentences in a foreign language
+* Excel Automation by selecting an Excel file and the cells in the file only
+* The explanation of sentences in a foreign language
 
-## TODO 
 
- - A simple MCP server
 
