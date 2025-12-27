@@ -5,11 +5,19 @@ export default function Home() {
     
     return(
         <>
-
-            <NavLink to="/excel" end>
-                Excel Automation
-            </NavLink>
-               
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh"
+                }}
+                >
+                <NavLink to="/excel" end>
+                    Excel Automation
+                </NavLink>
+            </div>
+       
         </>
 
     )
