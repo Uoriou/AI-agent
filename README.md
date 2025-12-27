@@ -1,4 +1,4 @@
-# 🤖 AI agent
+# 🤖 AI agent ( AI Automation Agent for Structured Document Translation)
 
 > [!NOTE]
 > Stil work in progress...
@@ -6,7 +6,7 @@
 ## Project Overview
 
 This project is to help a friend of mine who has a part-time language tranlsation job.
-It extracts the language segment from an Excel workbook he is responsible for translating and outputs the correct Japanese translation into the workbook. 
+It extracts the language segment from an Excel workbook he is responsible for translating and outputs the correct Japanese translation into the workbook while preserving spreadsheet structure and formatting.
 
 ## Libraries / Technologies Used:
 
