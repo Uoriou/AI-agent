@@ -2,10 +2,7 @@ import anthropic
 import os
 from dotenv import load_dotenv
 
-"""
-Project idea 
-Translate letters written in German into English
-"""
+
 
 #Instantiate this in api.py 
 class AssistedIntelligent:

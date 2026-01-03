@@ -1,10 +1,13 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile,HTTPException
 from typing import Annotated
 from fastapi.middleware.cors import CORSMiddleware
+from pathlib import Path
 import uvicorn
 import my_gpt
 import parser
 import excel
+import test
+
 
 app = FastAPI()
 
@@ -44,10 +47,24 @@ async def post(text:dict):
 """Excel file"""  
 @app.post("/automate")
 async def post(file: Annotated[UploadFile, File()]):
-    contents = await file.read()   
-    print(len(contents))
-    #excel_automation = excel.Excel(file)
-    return None
 
-#if __name__ == "__main__":
-    #uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+   #try:
+        if not Path(file.filename).suffix == '.xlsx':
+            print("Its not a valid input",file.filename)
+            raise HTTPException(status_code=400, detail="Invalid file type")
+        else:
+            print(file)
+            contents = await file.read()  
+            #test.ExcelTest() -- > works
+            # Conversion to kilobytes, megabytes, and gigabytes
+            file_size_kb = len(contents) / 1024 
+            print("Downloaded")
+            #Open the excel file in the custom class
+            excel_automation = excel.Excel(contents)
+            print("Operation performed")
+    #except Exception as e:
+        
+        return None
+
+if __name__ == "__main__":
+    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)

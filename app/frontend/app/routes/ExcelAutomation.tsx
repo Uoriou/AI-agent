@@ -1,5 +1,6 @@
 import React, { useEffect, useState,useRef } from 'react';
-import axios from 'axios';
+import axios from 'axios'; 
+
 /*
 Excel file is dropped here 
 */
@@ -24,13 +25,8 @@ export default function ExcelAutomation(){
         const formData = new FormData();
         formData.append("file",file)
         console.log("Sending to the backend")
-        /*const data = {
-            sentence:file
-        }
-        const json = JSON.stringify(data)*/
-        //Move the link to an environmental variable
-        
-        await axios.post('https://ai-agent-gywv.onrender.com/automate', formData, {
+        //Make sure the link is not 400 bad 
+        await axios.post("http://localhost:8000/automate", formData, {
             headers: {
                 "Content-Type":"multi-part/form-data",
             },
@@ -50,11 +46,7 @@ export default function ExcelAutomation(){
                 alignItems: 'center',
                 height: '100vh',}}
             >
-               <div className="text-4xl font-extrabold text-transparent bg-clip-text
-                                bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700">
-                   Chose an Excel file 
-                </div>
- 
+                <p className="font-mono text-xl"> Chose an Excel file </p>
                 <p className="text-sm text-gray-400 mt-2">
                     Click below to browse
                     <span className="ml-1 text-gray-500">
@@ -75,6 +67,7 @@ export default function ExcelAutomation(){
                         <label
                             htmlFor="excel"
                             className="inline-flex items-center gap-2
+                                    font-mono
                                     px-5 py-2.5
                                     rounded-xl
                                     bg-blue-600 text-white
@@ -91,6 +84,7 @@ export default function ExcelAutomation(){
                         <button
                             onClick={handleSubmit}
                             className="px-5 py-2.5
+                                    font-mono
                                     rounded-xl
                                     border border-gray-300
                                     text-sm font-medium
