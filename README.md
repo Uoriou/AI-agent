@@ -11,13 +11,18 @@ It extracts the language segment from an Excel workbook he is responsible for tr
 ## Libraries / Technologies Used:
 
   ### Frontend 
+  
   * React Typescript
   * Tailwind
 
   ### Backend
-  * Python fastApi 
+  
+  * Python FastAPI 
   * Python openpyxl
   * Python pandas
+
+  ### API Integration 
+  
   * Claude API 
 
   [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind&perline=3)](https://skillicons.dev)
@@ -37,8 +42,8 @@ It extracts the language segment from an Excel workbook he is responsible for tr
 
 ## Features 
 
-* Excel Automation by selecting an Excel file and the cells in the file only
-* The explanation of sentences in a foreign language
-
+* Automated language translation by selecting an excel file and the cells in the file 
+* Keeps the original spreadsheet structure and format intact 
+* Any language tranlsation supported
 
 
