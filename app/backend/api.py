@@ -55,13 +55,12 @@ async def post(file: Annotated[UploadFile, File()]):
         else:
             print(file)
             contents = await file.read()  
-            #test.ExcelTest() -- > works
-            # Conversion to kilobytes, megabytes, and gigabytes
-            file_size_kb = len(contents) / 1024 
             print("Downloaded")
             #Open the excel file in the custom class
             excel_automation = excel.Excel(contents)
             print("Operation performed")
+        
+                    
     #except Exception as e:
         
         return None
