@@ -6,7 +6,7 @@ import my_gpt
 
 class Excel:
 
-    def __init__(self,file):
+    def __init__(self,file,language):
         
         input_buf = BytesIO(file) 
         """wb = load_workbook(input_buf)
@@ -18,9 +18,13 @@ class Excel:
         input_buf.seek(0)  
         df = pd.read_excel(input_buf, index_col=None, na_values=['NA'])
         numpy_arr = pd.DataFrame(df)
-        print(numpy_arr.to_numpy())
-        #call the api 
-        #ai = my_gpt.AssistedIntelligent(text_to_translate)
+        #Put a comma after every cell gets printed
+        block = []
+        for i in numpy_arr.to_numpy():
+            block.append(i[0] + ",") # TODO, can replace it with \ or | 
+        #call the api, which translate a chunk of texts
+        ai = my_gpt.AssistedIntelligent(block,language)
+        print(ai.ask()) 
         """
         with open("output.xlsx", "wb") as f:
             f.write(output_buf.getvalue())"""

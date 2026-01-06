@@ -47,7 +47,7 @@ async def post(text:dict):
 """Excel file"""  
 @app.post("/automate")
 async def post(file: Annotated[UploadFile, File()]):
-
+        language = "Japanese" # default language 
    #try:
         if not Path(file.filename).suffix == '.xlsx':
             print("Its not a valid input",file.filename)
@@ -57,7 +57,8 @@ async def post(file: Annotated[UploadFile, File()]):
             contents = await file.read()  
             print("Downloaded")
             #Open the excel file in the custom class
-            excel_automation = excel.Excel(contents)
+            # ! Testing the default language. Make sure to get one from the frontend 
+            excel_automation = excel.Excel(contents,language)
             print("Operation performed")
         
                     
