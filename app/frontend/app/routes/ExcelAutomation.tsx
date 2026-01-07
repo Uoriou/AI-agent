@@ -1,5 +1,7 @@
 import React, { useEffect, useState,useRef } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
+import { NavLink } from "react-router";
+import UserOptions from './Options';
 
 /*
 Excel file is dropped here 
@@ -8,6 +10,7 @@ Excel file is dropped here
 export default function ExcelAutomation(){
 
     const [file,setFile] = useState<File | undefined>();
+    const [isReady,setIsReady]  = useState(false);
 
     function handleOnChangeFile(e:React.FormEvent<HTMLInputElement>){
         const target = e.target as HTMLInputElement & {
@@ -31,7 +34,7 @@ export default function ExcelAutomation(){
                 "Content-Type":"multi-part/form-data",
             },
         }).then( res => {
-            console.log("Success",res);
+            console.log("Success",res);  
         }).catch(res =>{
             console.log("Failed to post it to the backend", res)
         })
@@ -80,9 +83,9 @@ export default function ExcelAutomation(){
                         >
                             Browse file
                         </label>
-
+                        {/*The below code is the same as "handleSubmit" only */}
                         <button
-                            onClick={handleSubmit}
+                            onClick={() => {handleSubmit(); setIsReady(true);}}
                             className="px-5 py-2.5
                                     font-mono
                                     rounded-xl
@@ -92,13 +95,19 @@ export default function ExcelAutomation(){
                                     transition
                                     hover:bg-gray-100
                                     active:scale-95"
+                           
                         >
                             Upload
                         </button>
+                        
                 </div>
+                {/*If the file upload ready useState is true,the button to options.tsx becomes available */}
+                {isReady ? 
+                    <UserOptions/>:null
+                }
                     
             </div>
-
+            
         </>
     )
 }
