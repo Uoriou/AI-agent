@@ -25,7 +25,6 @@ class AssistedIntelligent:
         client = anthropic.Anthropic(
             api_key=MY_ENV_VAR
         )
-        # TODO i have to factor in the block of text here as an argument
         if self.content:
             pass
         if len(self.block) != 0:

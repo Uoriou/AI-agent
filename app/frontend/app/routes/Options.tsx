@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react';
 
-
 type childProps = {
-    onComplete? :(isReady:boolean) => boolean;
+    onComplete? :(isReady:string) => void;
 }
 
-export default function userOptions({ 
-    onComplete = ()=> true
+export default function UserOptions({ 
+    onComplete = (isReady:string)=> console.log(isReady), 
 }: childProps) {
-
-    /*This becomes active when a file is uploaded */
-    const [ready,setReady]  = useState(false);
     
-    //change it to the returned value of onComplete
+    const [language,setLanguage]  =useState("");
+    function handleOptionChange(e:React.ChangeEvent<HTMLSelectElement>){
+        
+        const value = e.target.value;
+        if (value !== "null") {
+            setLanguage(value);
+            console.log("OK");
+        } 
+            //onComplete(target.language);// replaced the boolean with the actual e.target.value
+        
+    }
+    
     return (
-        <>
-            <select>
+        <> {/*It was onComplete(e.target.value) and that was really ok  */}
+            <select onChange={(e)=> {handleOptionChange(e)}}>
                 
-                <option value="someOption">Some option</option>
-                <option value="otherOption">Other option</option>
+                <option value="Japanese">Japanese</option>
+                <option value="null">...</option>
             </select>
-
         </>
     )
 }
