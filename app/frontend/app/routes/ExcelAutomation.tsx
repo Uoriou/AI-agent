@@ -11,7 +11,8 @@ export default function ExcelAutomation(){
 
     const [file,setFile] = useState<File | undefined>();
     const [isReady,setIsReady]  = useState(false);
-    const [language,setLanguage] = useState("");
+    const [language,setLanguage] = useState<string>("");
+
 
     function handleOnChangeFile(e:React.FormEvent<HTMLInputElement>){
         const target = e.target as HTMLInputElement & {
@@ -20,6 +21,7 @@ export default function ExcelAutomation(){
         if(target.files){
             console.log('File', target.files);
             setFile(target.files[0]);
+            setIsReady(true);
         }
     }
     //There was an async and await pair, which is the modern way of writing
@@ -65,12 +67,12 @@ export default function ExcelAutomation(){
                     )}
 
                     <div className="mt-4 flex items-center gap-3">
-                        
+                        {/*setIsReady(true); was inside onChange */}
                         <input
                             type="file"
                             id="excel"
                             accept=".xlsx,.xls,.csv"
-                            onChange={(e) => {handleOnChangeFile(e);setIsReady(true);}}
+                            onChange={(e) => {handleOnChangeFile(e)}}
                             className="hidden"
                         />
                        
@@ -111,22 +113,17 @@ export default function ExcelAutomation(){
                     
             </div>
 
-            <div style= {{display: 'flex',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                alignItems: 'center',
-                height: '100vh',
-                gap: "24px" }}
-            >{/*Get the language selection though props and store it into an useState ? */} 
-                {isReady ? 
+           
+            {/*Get the language selection though props and store it into an useState */} 
+                {/*'Discontinued' isReady ? 
                     <div>
                         <p className="font-mono text-xl"> 2, Choose a language </p>
                         <UserOptions onComplete={setLanguage}/>
-                       
+                        <div>[{language} ]</div>
                     </div>
                     :null 
-                }
-            </div> {language} 
+                */}
+            
             
         </>
     )

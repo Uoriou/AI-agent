@@ -56,9 +56,10 @@ async def post(file: Annotated[UploadFile, File()]):
             print(file)
             contents = await file.read()  
             print("Downloaded")
-            #Open the excel file in the custom class
-            # ! Testing the default language. Make sure to get one from the frontend 
-            excel_automation = excel.Excel(contents,language)
+            #Open the excel file in the custom class 
+            excel_automation = excel.Excel(contents)
+            print("Translating")
+            excel_automation.translate(language)
             print("Operation performed")
         
                     
