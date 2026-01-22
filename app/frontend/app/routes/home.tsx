@@ -13,9 +13,9 @@ export default function Home() {
                     height: "100vh"
                 }}
                 >
-                <NavLink to="/excel" end>
+                <NavLink to="/automation" end>
                     Excel Automation
-                </NavLink>
+                </NavLink> 
             </div>
        
         </>

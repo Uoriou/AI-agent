@@ -3,14 +3,21 @@ import os
 from dotenv import load_dotenv
 
 
-
 #Instantiate this in api.py 
 class AssistedIntelligent:
 
     content = "" 
+    language = ""
+    block = []
 
+    #Not used this time 
     def __init__(self,content:str):
         self.content = content
+
+    def __init__(self,block:list,language:str):
+        self.block = block
+        self.language = language
+        #print("The constructor is valid")
 
     def ask(self):
         load_dotenv()
@@ -18,18 +25,31 @@ class AssistedIntelligent:
         client = anthropic.Anthropic(
             api_key=MY_ENV_VAR
         )
+        if self.content:
+            return 
+        if len(self.block) != 0: # list
+            chars = ""
+            for i in self.block:
+                chars+= (i + ",")
+            print("Chars",chars)
+            
+            response = client.messages.create(
+                model="claude-haiku-4-5", 
+                max_tokens=2000, #Adjust this however i want
+               
+                system=(f"You are supposed to translate the following sentences separated by the (,) into {self.language}."
+                        "Be concise, natural and the just output translation one by one separated by (,)  and do not put like comments or anything ."),
+                messages=[
+                    {"role": "user", "content":chars}
+                ]
+            )
+            #return response.content[0].text
+            return [t.strip() for t in response.content[0].text.split(",")]
 
-        response = client.messages.create(
-            model="claude-haiku-4-5", 
-            max_tokens=2000, #Adjust this however i want
-            messages=[
-                {"role": "user", "content":self.content}
-            ]
-        )
-        #print(response.content[0].text)  
-        return response.content[0].text 
-
-"""Debugging purpose -- >   
+            
+        return None
+        
+"""Instantiate it like the following -- >   
 ai = AssistedIntelligent("Is coding good for the brain")
 print(ai.ask())"""
 
