@@ -1,17 +1,23 @@
 import React, { useEffect, useState,useRef } from 'react';
 import axios from 'axios';
-import { NavLink } from "react-router";
-import UserOptions from './Options';
+import { useNavigate } from "react-router";
+import UserOptions from './CellRangeForm';
 
 /*
 Excel file is dropped here 
 */
 
-export default function ExcelAutomation(){
+type ChildProps= {
+    onSelect? :(value:string)=>void; // TODO Change this from string to FormData
+}
+
+export default function ExcelAutomation({
+    onSelect = () => undefined,
+}:ChildProps){
 
     const [file,setFile] = useState<File | undefined>();
     const [isReady,setIsReady]  = useState(false);
-    const [language,setLanguage] = useState<string>("");
+    const navigate = useNavigate();
 
 
     function handleOnChangeFile(e:React.FormEvent<HTMLInputElement>){
@@ -22,25 +28,32 @@ export default function ExcelAutomation(){
             console.log('File', target.files);
             setFile(target.files[0]);
             setIsReady(true);
+            onSelect("Selected")
         }
     }
     //There was an async and await pair, which is the modern way of writing
     function handleSubmit(){
-        //json or form ? i think its form 
+       
         if(!file) return;
         const formData = new FormData();
         formData.append("file",file)
         console.log("Sending to the backend")
-        //Make sure the link is not 400 bad 
-        axios.post("http://localhost:8000/automate", formData, {
+        // A code modification
+        try{
+            axios.post("http://localhost:8000/automate", formData, {
             headers: {
                 "Content-Type":"multi-part/form-data",
             },
-        }).then( res => {
-            console.log("Success",res);  
-        }).catch(error =>{
-           console.error("Upload failed", error); 
-        })
+            }).then( res => {
+                console.log("Success",res); 
+                //setIsReady(true); 
+            }).catch((res)=>{
+                console.error("Error")
+            })
+
+        }catch{
+            alert("Sorry something went wrong with the file selection")
+        }
     
     }
 
@@ -109,21 +122,12 @@ export default function ExcelAutomation(){
                             Upload
                         </button>
                         
-                </div>   
+                </div>  
+                {/*isReady && <button onClick={()=>{
+                    navigate("/options")
+                }}>Next</button>*/} 
                     
-            </div>
-
-           
-            {/*Get the language selection though props and store it into an useState */} 
-                {/*'Discontinued' isReady ? 
-                    <div>
-                        <p className="font-mono text-xl"> 2, Choose a language </p>
-                        <UserOptions onComplete={setLanguage}/>
-                        <div>[{language} ]</div>
-                    </div>
-                    :null 
-                */}
-            
+            </div> 
             
         </>
     )

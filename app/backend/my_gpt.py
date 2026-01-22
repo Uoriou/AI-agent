@@ -36,7 +36,7 @@ class AssistedIntelligent:
             response = client.messages.create(
                 model="claude-haiku-4-5", 
                 max_tokens=2000, #Adjust this however i want
-                # TODO also allow users to select a language 
+               
                 system=(f"You are supposed to translate the following sentences separated by the (,) into {self.language}."
                         "Be concise, natural and the just output translation one by one separated by (,)  and do not put like comments or anything ."),
                 messages=[

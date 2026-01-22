@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { Welcome } from "~/welcome/welcome";
-import ExcelAutomation from "./ExcelAutomation";
+import ExcelAutomation from "./FileUpload";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
