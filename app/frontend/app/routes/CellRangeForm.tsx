@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from 'react';
 /* This was initially for language selection but it is used for cell column selection*/
+/* //!The props are not invoked for some reason in DoAutomation.tsx  */
+// TODO move the entire code to FileUpload.tsx
 type childProps = {
-    onComplete? :(isReady:string) => void;
+    onComplete?:(call:string) => void;
+    disabled? :boolean;
 }
 
-export default function UserOptions({ 
-    onComplete = (isReady:string)=> undefined, 
-}: childProps) {
+export default function RangeForm({ onComplete,}: childProps) {
     const EXCEL_RANGE_REGEX = /^[A-Z]+[0-9]+(:[A-Z]+[0-9]+)?$/;
-    const [range, setRange] = useState("");
+    const [range, setRange] = useState<string>("");
     const [error, setError] = useState<string | null>(null);
 
+    // I can confirm that this is called 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
         if (!EXCEL_RANGE_REGEX.test(range)) {
             setError("Invalid Excel range (e.g. C1 or A1:B10)");
             return;
         }
-        else{
-            setError(null); 
-            console.log("Submitted range:", range);
-            // send to backend here
-        }
+        setError(null); 
+        onComplete?.(range);
     }
-      
-    
-    function handleOptionChange(e:React.ChangeEvent<HTMLSelectElement>){
-        
-        onComplete(e.target.value);// replaced the boolean with the actual e.target.value
-        console.log("Here " ,e.target.value);
-        
+
+    function handleOnChangeCell(e:any){
+        e.preventDefault();
+        setRange(e.target.value.toUpperCase())
     }
     
     return (
@@ -43,21 +38,20 @@ export default function UserOptions({
                 height: '100vh',
                 gap: "24px" }}
             >
-                <div>Select the part of excel cells to translate</div>
-                {/*Vibe coded the form */}
-                <form onSubmit={handleSubmit}>
+                <p className="font-mono text-xl"> 2, Select the part of excel cells to translate </p>
+                <form onSubmit={handleSubmit}> {/* // ? handlesubmit maybe redundunt ? i can have a separate button ? */}
                     <label htmlFor="range" style={{ display: "block", marginBottom: 8 }}>
                         Excel cell range
                     </label>
-
-                    <input
-                        id="range"
-                        type="text"
-                        value={range}
-                        onChange={(e) => setRange(e.target.value.toUpperCase())}
-                        placeholder="e.g. A1:B10"
-                        style={{ padding: 8, width: 220 }}
-                    />
+                   {/* it was setrange()*/}
+                        <input
+                            id="range"
+                            type="text"
+                            value={range}
+                            onChange={(e) => {handleOnChangeCell(e)}} 
+                            placeholder="e.g. A1:B10"
+                            style={{ padding: 8, width: 220 }}
+                        />
 
                     {error && (
                         <div style={{ color: "red", marginTop: 6 }}>

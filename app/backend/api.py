@@ -46,7 +46,7 @@ async def post(text:dict):
     
 """Excel file"""  
 @app.post("/automate")
-async def post(file: Annotated[UploadFile, File()]):
+async def post(file: Annotated[UploadFile, File()]): #Keep in mind that hte frontend has changed
         language = "Japanese" # default language 
    #try:
         if not Path(file.filename).suffix == '.xlsx':
