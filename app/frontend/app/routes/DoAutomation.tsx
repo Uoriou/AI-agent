@@ -53,24 +53,23 @@ export default function DoAutomation(){
         if(file && range) {
             setError(null); 
             formData.append("file",file);
-            formData.append("cell",range);
+            formData.append("cell_range",range);
             console.log("Translating")
         }
-        /*try{
+        try{
             axios.post("http://localhost:8000/automate", formData, {
             headers: {
                 "Content-Type":"multi-part/form-data",
             },
             }).then( res => {
                 console.log("Success",res); 
-                setTranslate(true); 
             }).catch((res)=>{
                 console.error("Error")
             })
 
         }catch{
             alert("Sorry something went wrong with the file selection")
-        }*/
+        }
     
     }
 
@@ -115,10 +114,7 @@ export default function DoAutomation(){
                         </button> 
                     }
                     
-                </form>
-
-               
-            
+                </form> 
             </div>  
         </>
     )

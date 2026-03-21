@@ -11,46 +11,56 @@ class Excel:
     numpy_arr = []
     wb = None
     ws = None
-
-    def __init__(self,file):
+    language = ""
+    first_cell_range = ""
+    seconds_cell_range = ""
+    def __init__(self,file, first_cell_range,second_cell_range): #cell_range example would be A1:B10
         
         input_buf = BytesIO(file) 
         self.wb = load_workbook(input_buf)
         self.ws = self.wb.active
+        self.first_cell_range = first_cell_range
+        self.seconds_cell_range = second_cell_range
         #Get the column to translate using pandas and convert it into a numpy array
         input_buf.seek(0)  
         df = pd.read_excel(input_buf, index_col=None, na_values=['NA'])
         self.numpy_arr = pd.DataFrame(df)
+        print(self.numpy_arr)
        
-    def translate(self,language):
-        #Put a comma after every cell gets printed
-        #call the api, which translate a chunk of texts
-        index = 0
-        translation_map = {}
-        for index in self.numpy_arr.to_numpy(): 
-            self.block.append(index[0]) # There was  + ',' 
-            #Map Japanese to English 
-            for j in self.block:
-                translation_map[j] = None
-        ai = my_gpt.AssistedIntelligent(self.block,language)
-        translated_text = []
-        translated_text = ai.ask() #API result
-       
-        for key, value in zip(self.block, translated_text):
-            translation_map[key] = value  
-        i = 1 
+    def translate(self, language):
+
+        # Parse start/end cells
+        start_col_letter = ''.join(c for c in self.first_cell_range if not c.isdigit())
+        start_row = int(''.join(c for c in self.first_cell_range if c.isdigit()))
+
+        end_col_letter = ''.join(c for c in self.seconds_cell_range if not c.isdigit())
+        end_row = int(''.join(c for c in self.seconds_cell_range if c.isdigit()))
+
+        input_col_letter = start_col_letter     
+        output_col_letter = "D"                  
+
+        # Collect text to translate
+        self.block = []
+        for row_num in range(start_row, end_row + 1):
+            cell_value = self.ws[f"{input_col_letter}{row_num}"].value
+            if cell_value:
+                self.block.append(cell_value)
+            else:
+                self.block.append("")
+
+        # Call AI
+        ai = my_gpt.AssistedIntelligent(self.block, language)
+        translated_text = ai.ask()
+
+        # Write translations into column D 
+        for i, translation in enumerate(translated_text, start=start_row):
+            self.ws[f"{output_col_letter}{i}"] = translation
+
+        # Save file
         output_buf = BytesIO()
-
-        for i, translation in enumerate(translated_text, start=1):
-            self.ws[f"B{i}"] = translation
-
         self.wb.save(output_buf)
+
         with open("translated_output.xlsx", "wb") as f:
             f.write(output_buf.getvalue())
-
-       
-    
-
-        
-        
+            
 

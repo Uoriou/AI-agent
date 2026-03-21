@@ -1,7 +1,8 @@
-from fastapi import FastAPI, File, UploadFile,HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from typing import Annotated
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
+from pydantic import BaseModel
 import uvicorn
 import my_gpt
 import parser
@@ -28,6 +29,7 @@ app.add_middleware(
 
 temp = []
 
+
 @app.get("/answer")
 def get():
     #return {"message": temp}
@@ -45,10 +47,22 @@ async def post(text:dict):
     temp.append(response)
     
 """Excel file"""  
-@app.post("/automate")
-async def post(file: Annotated[UploadFile, File()]): #Keep in mind that hte frontend has changed
+@app.post("/automate")#Keep in mind that the frontend has changed
+async def post(file: Annotated[UploadFile, File()],cell_range:str = Form(...)): 
         language = "Japanese" # default language 
+        print(cell_range)
+        index = 0
+        first = ""
+        for i in range(len(cell_range)): # A1:A5
+            if i < len(cell_range)-1 and cell_range[i] == ":":
+                first  = cell_range[0:i]
+                index = i
+                break
+        second = cell_range[index+1:]
+        print(first)
+        print(second)
    #try:
+        
         if not Path(file.filename).suffix == '.xlsx':
             print("Its not a valid input",file.filename)
             raise HTTPException(status_code=400, detail="Invalid file type")
@@ -57,11 +71,11 @@ async def post(file: Annotated[UploadFile, File()]): #Keep in mind that hte fron
             contents = await file.read()  
             print("Downloaded")
             #Open the excel file in the custom class 
-            excel_automation = excel.Excel(contents)
+            excel_automation = excel.Excel(contents,first,second)
             print("Translating")
             excel_automation.translate(language)
             print("Operation performed")
-        
+           
                     
     #except Exception as e:
         
