@@ -8,17 +8,14 @@ Excel file is dropped here
 */
 
 type ChildProps= {
-    onSelect? :(value:string)=>void; // TODO Change this from string to FormData
+    onSelect? :(value:File)=>void; // TODO Change this FormData to string 
 }
 
-export default function ExcelAutomation({
-    onSelect = () => undefined,
-}:ChildProps){
+export default function ExcelAutomation({onSelect}:ChildProps){
 
     const [file,setFile] = useState<File | undefined>();
     const [isReady,setIsReady]  = useState(false);
     const navigate = useNavigate();
-
 
     function handleOnChangeFile(e:React.FormEvent<HTMLInputElement>){
         const target = e.target as HTMLInputElement & {
@@ -28,33 +25,18 @@ export default function ExcelAutomation({
             console.log('File', target.files);
             setFile(target.files[0]);
             setIsReady(true);
-            onSelect("Selected")
+            onSelect?.(target.files[0])
         }
     }
     //There was an async and await pair, which is the modern way of writing
     function handleSubmit(){
        
         if(!file) return;
-        const formData = new FormData();
-        formData.append("file",file)
-        console.log("Sending to the backend")
-        // A code modification
-        try{
-            axios.post("http://localhost:8000/automate", formData, {
-            headers: {
-                "Content-Type":"multi-part/form-data",
-            },
-            }).then( res => {
-                console.log("Success",res); 
-                //setIsReady(true); 
-            }).catch((res)=>{
-                console.error("Error")
-            })
-
-        }catch{
-            alert("Sorry something went wrong with the file selection")
-        }
-    
+        //const formData = new FormData();
+        //formData.append("file",file)
+        console.log("Uploading the file",)
+        onSelect?.(file)
+       
     }
 
     return(
@@ -106,27 +88,8 @@ export default function ExcelAutomation({
                             Browse file
                         </label>
                         {/*The below code is the same as "handleSubmit" only */}
-                        <button
-                            onClick={() => {handleSubmit();}}
-                            className="px-5 py-2.5
-                                    font-mono
-                                    rounded-xl
-                                    border border-gray-300
-                                    text-sm font-medium
-                                    text-gray-700
-                                    transition
-                                    hover:bg-gray-100
-                                    active:scale-95"
-                           
-                        >
-                            Upload
-                        </button>
                         
-                </div>  
-                {/*isReady && <button onClick={()=>{
-                    navigate("/options")
-                }}>Next</button>*/} 
-                    
+                </div>   
             </div> 
             
         </>
