@@ -36,10 +36,6 @@ It extracts the language segment from an Excel workbook he is responsible for tr
    * Operating System: Windows, macOS, or Linux
    * Broadband Connection
 
-  This app is deployed on Cloud using: 
-   * Render for the backend 
-   * Vercel for the frontend
-
 ## Features 
 
 * Automated language translation by selecting an excel file and the cells in the file 
