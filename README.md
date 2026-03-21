@@ -44,6 +44,6 @@ It extracts the language segment from an Excel workbook he is responsible for tr
 
 * Automated language translation by selecting an excel file and the cells in the file 
 * Keeps the original spreadsheet structure and format intact 
-* Any language tranlsation supported
+
 
 
