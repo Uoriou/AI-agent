@@ -45,7 +45,7 @@ It extracts the language segment from an Excel workbook he is responsible for tr
    * Please install Docker desktop: [Docker desktop](https://www.docker.com/products/docker-desktop/)
    * Make sure to clone the repository:
   ```bash
-    git clone https://github.com/Uoriou/AI-agent.git
+    https://github.com/Uoriou/AI-agent.git
   ```
   ### 1. Run the application using the docker image
   
