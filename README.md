@@ -20,12 +20,13 @@ It extracts the language segment from an Excel workbook he is responsible for tr
   * Python FastAPI 
   * Python openpyxl
   * Python pandas
+  * Docker
 
   ### API Integration 
   
   * Claude API 
 
-  [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind&perline=3)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=py,fastapi,react,ts,tailwind,docker&perline=3)](https://skillicons.dev)
 
 ## Getting Started 
 
