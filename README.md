@@ -36,6 +36,28 @@ It extracts the language segment from an Excel workbook he is responsible for tr
   
    * Operating System: Windows, macOS, or Linux
    * Broadband Connection
+   * Docker desktop
+
+ ###  Installation Guidline
+  > [!NOTE]
+  > This project is deployed on Docker.
+  
+   * Please install Docker desktop: [Docker desktop](https://www.docker.com/products/docker-desktop/)
+   * Make sure to clone the repository:
+  ```bash
+    git clone https://github.com/Uoriou/AI-agent.git
+  ```
+  ### 1. Run the application using the docker image
+  
+  Once Docker / Docker desktop is installed, make sure to navigate to where docker-compose.yml file is located to run the project using this command: 
+  ```bash 
+      docker compose up -d --build 
+  ```
+  ### 2. Check if it is running
+  
+  ```bash 
+      docker ps
+  ```
 
 ## Features 
 
