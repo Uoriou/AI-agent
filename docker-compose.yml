@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  python-backend:
+    build: ./app/backend
+    container_name: excel-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app/backend:/app
+    env_file:
+      - .env
+
+  frontend:
+    build: ./app/frontend 
+    container_name: excel-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./app/frontend:/app          
