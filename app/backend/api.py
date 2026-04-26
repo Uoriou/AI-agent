@@ -82,4 +82,4 @@ async def post(file: Annotated[UploadFile, File()],cell_range:str = Form(...)):
         return None
 
 if __name__ == "__main__":
-    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("api:app", host="0.0.0.0", port=8000)
