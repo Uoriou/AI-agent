@@ -1,7 +1,7 @@
 # 🤖 AI agent ( AI Automation Agent for Structured Document Translation)
 
 > [!NOTE]
-> Stil work in progress...
+> In a feedback loop...
 
 ## Project Overview
 
