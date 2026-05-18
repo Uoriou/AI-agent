@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { NavLink } from "react-router";
+import ToolTip from './ToolTip';
 import '../app.css'
 
-// This div creation should be in a different file in a component just like in ToolTip in excalidraw
-// to make this component usable 
 export const getTipDiv = ()=>{
     const existingDiv = document.querySelector<HTMLDivElement>(".gpthome-tooltip");
     if (existingDiv) {
@@ -34,14 +33,8 @@ export const updateTipDIv = (
 
 export default function Home() {
 
-    useEffect(() => {
-    //Clean up process to prevent memory leak 
-    return () =>
-      getTipDiv().classList.remove("gpthome-tooltip--visible");
-    }, []);
-
     return(
-        <>
+        <>  {/* The commented out code works perfectly*/}
             <div
                 style={{
                     display: "flex",
@@ -50,7 +43,7 @@ export default function Home() {
                     height: "100vh"
                 }}
             >
-                <NavLink
+                {/*<NavLink
                     to="/automation"
                     end
                     onPointerEnter={(event) =>
@@ -66,7 +59,15 @@ export default function Home() {
                     }
                 >
                     Excel Automation
-                </NavLink>
+                </NavLink>*/}
+                
+                    <NavLink to="/automation"end>
+                        <ToolTip label= {"Click here to start "}>
+                            Start Excel Automation... 
+                        </ToolTip> 
+                    </NavLink>
+               
+                
             </div>
        
         </>
