@@ -30,7 +30,7 @@ export const updateTipDIv = (
 }
 
 type ToolTipProps = {
-    children:React.ReactNode; //children means that this is a chile element and can have a parent component 
+    children:React.ReactNode; //children means that this is a parent element and can have a child component 
     label:string;
 }
 
@@ -48,7 +48,7 @@ export default function ToolTip ({children,label}:ToolTipProps){
             <div
                 onPointerEnter={(event) =>
                     updateTipDIv(
-                        event.currentTarget as HTMLDivElement, 
+                        event.currentTarget as HTMLElement, 
                         getTipDiv(),
                         label,
                         false,

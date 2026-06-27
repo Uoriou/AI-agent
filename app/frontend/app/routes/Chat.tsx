@@ -3,7 +3,7 @@ import ChatInput from './components/ChatInput';
 import Response from './response';
 
 /*AI chat feature that is not in use + routing is not defined for this feature as well */
-export default function Chat(){
+function Chat(){
 
     const [prompted,setPrompted] = useState(false);
     const [answer, setAnswer] = useState<string[]>([]);
