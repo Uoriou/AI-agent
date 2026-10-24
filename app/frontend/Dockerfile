@@ -1,4 +1,4 @@
-# Use an official Node image
+# The following is for react dev mode, now im trying to use NGINX production set up so needs a different form
 FROM node:20-alpine
 WORKDIR /app
 COPY package.json ./
@@ -7,5 +7,6 @@ COPY . .
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD node -e "require('http').get('http://localhost:3000', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
-# Now docker compose has a command to run
+# Dev mode command to start
 CMD ["npm", "start"] 
+

@@ -3,7 +3,7 @@ version: '3.9'
 services:
   python-backend:
     build: ./app/backend
-    container_name: excel-backend
+    container_name: ai-backend
     ports:
       - "8000:8000"
     volumes:
@@ -11,12 +11,25 @@ services:
     env_file:
       - .env
 
-  frontend:
-    build: ./app/frontend 
-    container_name: excel-frontend
+  #node-frontend-dev:
+  # React Dev mode service for development
+    # build: ./app/vite_app
+    # container_name: ai-frontend
+    # ports:
+    #   - "5173:5173"
+    # volumes:
+    #   - ./app/vite_app:/app  
+    #   - /app/node_modules 
+    # run separately with `docker-compose run node-frontend-dev ` to start the dev server
+
+  node-frontend:
+    build:
+      context: ./app
+      dockerfile: vite_app/Dockerfile
+    container_name: ai-frontend
     ports:
-      - "3000:3000"
-    volumes:
-      - ./app/frontend:/app  
-      - /app/node_modules
-    command: npm run dev -- --host 0.0.0.0 --port 3000
+      - "80:80"
+    depends_on:
+      - python-backend
+    env_file:
+      - .env
