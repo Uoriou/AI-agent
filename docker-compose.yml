@@ -11,15 +11,16 @@ services:
     env_file:
       - .env
 
-  #node-frontend-dev:
+  
   # React Dev mode service for development
-    # build: ./app/vite_app
-    # container_name: ai-frontend
-    # ports:
-    #   - "5173:5173"
-    # volumes:
-    #   - ./app/vite_app:/app  
-    #   - /app/node_modules 
+  node-frontend-dev:
+    build: ./app/vite_app
+    container_name: ai-frontend-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./app/vite_app:/app  
+      - /app/node_modules 
     # run separately with `docker-compose run node-frontend-dev ` to start the dev server
 
   node-frontend:
